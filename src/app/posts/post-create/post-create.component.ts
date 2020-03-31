@@ -18,6 +18,7 @@ export class PostCreateComponent implements OnInit {
   onAddPost(form: NgForm) {
     if (form.valid) {
       this.postsService.addPost(form.value.title, form.value.content);
+      form.resetForm();
     }
   }
 
