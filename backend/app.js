@@ -1,8 +1,20 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const app = express();
+const mongoose = require("mongoose");
 
-const Post = require('./models/post');
+const app = express();
+const Post = require("./models/post");
+
+mongoose
+  .connect(
+    "mongodb+srv://intrepido:baddog@cluster0-zhxl3.mongodb.net/test?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    console.log("Conected to database");
+  })
+  .catch(() => {
+    console.log("Connection failed");
+  });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
