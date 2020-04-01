@@ -7,7 +7,7 @@ const Post = require("./models/post");
 
 mongoose
   .connect(
-    "mongodb+srv://intrepido:baddog@cluster0-zhxl3.mongodb.net/test?retryWrites=true&w=majority"
+    "mongodb+srv://intrepido:baddog@cluster0-zhxl3.mongodb.net/node-angular?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("Conected to database");
@@ -37,7 +37,7 @@ app.post("/api/posts", (req, res, next) => {
     title: req.body.title,
     content: req.body.content
   });
-  console.log(post);
+  post.save();
   res.status(201).json({
     message: "Post added successfully"
   });
