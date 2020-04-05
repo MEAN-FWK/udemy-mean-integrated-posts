@@ -62,42 +62,43 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.post('', checkAuth, multer({ storage: storage }).single('image'), (req, res, next) => {
-    const url = req.protocol + '://' + req.get('host');
-    const post = new Post({
-      title: req.body.title,
-      content: req.body.content,
-      imagePath: url + '/images/' + req.file.filename
+  const url = req.protocol + '://' + req.get('host');
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content,
+    imagePath: url + '/images/' + req.file.filename,
+    creator: req.userData.userId
     });
-    post.save().then(createdPost => {
-      res.status(201).json({
-        message: 'Post added successfully',
-        post: {
-          ...createdPost,
-          id: createdPost._id
-        }
-      });
+  post.save().then(createdPost => {
+    res.status(201).json({
+      message: 'Post added successfully',
+      post: {
+        ...createdPost,
+        id: createdPost._id
+      }
     });
-  }
+  });
+}
 );
 
 router.put('/:id', checkAuth, multer({ storage: storage }).single('image'), (req, res, next) => {
-    let imagePath = req.body.imagePath;
-    if (req.file) {
-      const url = req.protocol + '://' + req.get('host');
-      imagePath = url + '/images/' + req.file.filename;
-    }
-    const post = new Post({
-      _id: req.params.id,
-      title: req.body.title,
-      content: req.body.content,
-      imagePath: imagePath
-    });
-    Post.updateOne({ _id: req.params.id }, post).then(result => {
-      res.status(200).json({
-        message: 'Update succesfully'
-      });
-    });
+  let imagePath = req.body.imagePath;
+  if (req.file) {
+    const url = req.protocol + '://' + req.get('host');
+    imagePath = url + '/images/' + req.file.filename;
   }
+  const post = new Post({
+    _id: req.params.id,
+    title: req.body.title,
+    content: req.body.content,
+    imagePath: imagePath
+  });
+  Post.updateOne({ _id: req.params.id }, post).then(result => {
+    res.status(200).json({
+      message: 'Update succesfully'
+    });
+  });
+}
 );
 
 router.delete('/:id', checkAuth, (req, res, next) => {
