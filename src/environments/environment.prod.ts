@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'http://meanappudemycourse-env.eba-mkkiyf7e.us-east-2.elasticbeanstalk.com/api'
 };
