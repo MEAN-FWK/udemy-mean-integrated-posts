@@ -1,0 +1,26 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Node App Backend",
+      "program": "${workspaceFolder}/backend/server.js",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "MONGO_ATLAS_PW": "baddog",
+        "JWT_KEY": "secret_this_should_be_longer"
+      }
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Angular App Frontend",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}
