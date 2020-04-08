@@ -9,7 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-* Run `npm run start:server` for node dev server. Navigate to `http://localhost:3000/api/post`.
+* Run `npm run start:server` for node dev server. Navigate to `http://localhost:3000/api/posts`.
 
 * Run `ng serve` for angular dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
